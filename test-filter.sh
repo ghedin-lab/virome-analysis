@@ -6,8 +6,8 @@
 # Add Spades
 # blast after partitioning and after inflating
 
-path="/scratch/at120/virome-pipeline/lhmp"
-fastq="lhmp"	
+path="/scratch/at120/virome-pipeline/virome-analysis"
+fastq="test"
 
 cd $path
 
