@@ -80,7 +80,7 @@ echo "Submitted blastn Filter"
 unmappedBlastn=\
 $(echo \
 	"module load biopython && \
-	python get-unmapped.py $path/$fastq.unconc.megablast.blastn.tsv $path/$fastq.unconc.megablast.fasta $path/$fastq.unconc.megablast.blastn.fasta"\
+	python $path/get-unmapped.py $path/$fastq.unconc.megablast.blastn.tsv $path/$fastq.unconc.megablast.fasta $path/$fastq.unconc.megablast.blastn.fasta"\
 	| qsub -m ae -M twaddlac@gmail.com -j oe -N unmappedBlastn -W depend=afterok:$blastnFilter -l walltime=72:00:00,nodes=1:ppn=1,mem=12gb)
 echo $unmappedBlastn >> ids.txt
 echo "Submitted Unmapped Blastn"
