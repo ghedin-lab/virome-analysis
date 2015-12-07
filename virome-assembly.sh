@@ -10,7 +10,7 @@ path="/scratch/at120/virome-pipeline/lhmp"
 fastq="lhmp"	
 
 cd $path
-
+r
 #########################################
 ############### Functions ###############
 #########################################
@@ -276,15 +276,15 @@ echo "Submitted convert interleaved"
 
 
 
-first_idba=$(runba $fastq.unconc.interleaved.fasta $convert_interleaved firstba 512gb)
+first_idba=$(run_idba $fastq.unconc.interleaved.fasta $convert_interleaved first_idba 512gb)
 echo $first_idba >> ids.txt
 echo "Submitted Filtered Reads Assembly"
 
-blastn_first_idba=$(run_blastn $fastq.unconc.interleaved.idba.d/contig.fa $fastq.unconc.interleaved.idba.d/contig.blastn.nt.xml $firstba blastn_firstba)
+blastn_first_idba=$(run_blastn $fastq.unconc.interleaved.idba.d/contig.fa $fastq.unconc.interleaved.idba.d/contig.blastn.nt.xml $first_idba blastn_first_idba)
 echo $blastn_first_idba >> ids.txt
 echo "Submitted Blastn Filtered Reads Assembly"
 
-blastx_first_idba=$(run_blastx $fastq.unconc.interleaved.idba.d/contig.fa $fastq.unconc.interleaved.idba.d/contig.blastx.nr.xml $firstba blastx_firstba)
+blastx_first_idba=$(run_blastx $fastq.unconc.interleaved.idba.d/contig.fa $fastq.unconc.interleaved.idba.d/contig.blastx.nr.xml $first_idba blastx_first_idba)
 echo $blastx_first_idba >> ids.txt
 echo "Submitted Blastx Filtered Reads Assembly"
 
@@ -340,7 +340,7 @@ echo $convert_normalized >> ids.txt
 echo "Submitted convert normalized"
 
 #normalized_idba=$(runba $fastq.unaligned.pe.kak.fasta $convert_normalized normalized_idba)
-normalized_idba=$(runba $fastq.unaligned.pe.kak.fasta $convert_normalized normalized_idba 256gb)
+normalized_idba=$(run_idba $fastq.unaligned.pe.kak.fasta $convert_normalized normalized_idba 256gb)
 echo $normalized_idba >> ids.txt
 echo "Submitted normalized idba"
 
